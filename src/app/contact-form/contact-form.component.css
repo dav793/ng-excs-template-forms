@@ -1,0 +1,9 @@
+
+input.ng-invalid, select.ng-invalid {
+  background-color: #f8c9bd;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+}
