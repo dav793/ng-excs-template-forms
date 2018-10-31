@@ -41,12 +41,7 @@ export class ContactFormComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    if (form.valid)
-      console.log("sending data to server: ", this.model);
-  }
-
-  printOut(thing: any) {
-    console.log(thing);
+    console.log("sending data to server: ", this.model);
   }
 
 }
