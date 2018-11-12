@@ -1,34 +1,61 @@
 
 <h1>Contact Information</h1>
 
-<form>
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
 
   <div>
     <label for="firstName">First Name</label>
-    <input type="text" id="firstName">
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="model.firstName" required minlength="3" maxlength="20" appForbiddenNameValidator="bob" #firstName="ngModel">
+  </div>
+
+  <div *ngIf="!firstName.valid && (!firstName.pristine || !firstName.untouched)" class="error-text">
+    <p *ngIf="firstName.errors && firstName.errors.required">
+      First name is required
+    </p>
+    <p *ngIf="firstName.errors && firstName.errors.minlength">
+      First name must be at least 3 characters
+    </p>
+    <p *ngIf="firstName.errors && firstName.errors.forbiddenName">
+      First name {{ firstName.errors.forbiddenName.value }} is invalid
+    </p>
   </div>
 
   <br />
 
   <div>
     <label for="lastName">Last Name</label>
-    <input type="text" id="lastName">
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="model.lastName" required minlength="3" maxlength="20" #lastName="ngModel">
+  </div>
+
+  <div *ngIf="!lastName.valid && (!lastName.pristine || !lastName.untouched)" class="error-text">
+    <p *ngIf="lastName.errors && lastName.errors.required">
+      Last name is required
+    </p>
+    <p *ngIf="lastName.errors && lastName.errors.minlength">
+      First name must be at least 3 characters
+    </p>
   </div>
 
   <br />
 
   <div>
     <label for="dietaryPreferences">Dietary Preferences</label>
-    <select id="dietaryPreferences">
+    <select id="dietaryPreferences" name="dietaryPreferences" [(ngModel)]="model.dietaryPreferences" required #dietaryPreferences="ngModel">
       <option *ngFor="let diet of dietaryPreferenceOptions" [value]="diet">{{diet}}</option>
     </select>
+  </div>
+
+  <div *ngIf="!dietaryPreferences.valid && (!dietaryPreferences.pristine || !dietaryPreferences.untouched)" class="error-text">
+    <p *ngIf="dietaryPreferences.errors && dietaryPreferences.errors.required">
+      Dietary preferences is required
+    </p>
   </div>
 
   <br />
 
   <div>
     <label for="isMarried">Married</label>
-    <input type="checkbox" id="isMarried">
+    <input type="checkbox" id="isMarried" name="ageRange" [(ngModel)]="model.isMarried">
   </div>
 
   <br />
@@ -36,7 +63,7 @@
   <div>
     <label>Age</label>
     <div *ngFor="let range of ageRangeOptions; let i=index">
-      <input type="radio" id="{{ 'ageRange-' + i }}" value="{{range}}">
+      <input type="radio" id="{{ 'ageRange-' + i }}" value="{{range}}" name="ageRange" [(ngModel)]="model.ageRange">
       <label for="{{ 'ageRange-' + i }}">{{range}}</label>
     </div>
   </div>
