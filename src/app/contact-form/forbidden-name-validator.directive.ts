@@ -2,7 +2,7 @@ import { Directive, Input } from '@angular/core';
 import { AbstractControl, Validator, NG_VALIDATORS } from "@angular/forms";
 
 @Directive({
-  selector: '[appForbiddenNameValidator]',
+  selector: '[appForbiddenName]',
   providers: [{provide: NG_VALIDATORS, useExisting: ForbiddenNameValidatorDirective, multi: true}]
 })
 export class ForbiddenNameValidatorDirective implements Validator {

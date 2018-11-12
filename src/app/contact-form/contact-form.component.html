@@ -5,7 +5,7 @@
 
   <div>
     <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName" [(ngModel)]="model.firstName" required minlength="3" maxlength="20" appForbiddenNameValidator="bob" #firstName="ngModel">
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="model.firstName" required minlength="3" maxlength="20" appForbiddenName="bob" #firstName="ngModel">
   </div>
 
   <div *ngIf="!firstName.valid && (!firstName.pristine || !firstName.untouched)" class="error-text">
